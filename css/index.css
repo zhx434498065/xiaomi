@@ -76,6 +76,7 @@
 	height: 100px;
 	width: 1226px;
 	margin: 0 auto;
+	position: relative;
 }
 .sekuai_tu{
 	height: 55px;
@@ -85,16 +86,22 @@
 	float: left;
 }
 .daohang_wenzi{
+
+	margin-left: 234px;
+	position: absolute;
+	top: 0;
+	line-height: 100px;
+}
+.daohang_wenzi li{
+	/*margin: 0 15px;*/
 	float: left;
-	margin-left: 189px;
-	
 }
 .daohang_wenzi span{
 	line-height: 100px;
 	font-size: 15px;
 	float: left;
 	color: #333;
-	padding:  0 10px;
+	padding:  0 15px;
 	cursor: pointer;/* 光标移上去变成手 */
 }
 .sousuo{
@@ -134,7 +141,7 @@
 	background-color: red;
 	margin: 0 auto;
 	margin-bottom: 14px;
-	position: relative;
+	/*position: relative;*/
 
 }
  #banner{
@@ -142,6 +149,7 @@
             height: 460px;
             margin: 0 auto;
             position: relative;
+	 top:0;
         }
         .imgbox{
             width: 100%;
@@ -203,7 +211,7 @@
 	padding: 20px 0;
 	left: 0;
 	top: 0;
-	z-index: 3;
+	z-index: 10;
 }
 .banner_cedaohang li{
 	width: 174px;
@@ -822,7 +830,8 @@
 }
 .neirong1{
 	border-top: 1px solid #ffac13;
-	
+	position: relative;
+	overflow: hidden;
 }
 .neirong1 h4{
 	margin-top: 50px;
@@ -1152,3 +1161,140 @@
 .zhineng_tu2,.zhineng_tu1{
 	transition:transform 0.5s;
 }
+
+
+
+
+
+.tushu_lunbo{
+	width: 2000px;
+	height: 310px;
+	/*background-color: #000;*/
+	position: relative;
+	z-index: 7;
+	transition: all 1s;
+}
+.tupian_lunbo1{
+	float: left;
+	width: 296px;
+}
+.neirong_lunbodian{
+	width: 120px;
+	position: absolute;
+	left: 0;
+	right: 0;
+	margin: auto;
+	bottom: 15px;
+
+}
+.neirong_lunbodian li{
+	width: 6px;
+	height: 6px;
+	border: 2px solid #ff6700;
+	border-radius: 6px;
+	margin: 0 10px;
+	float: left;
+
+}
+.tushu_lunbozuoyou{
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	margin: auto;
+	width: 296px;
+	height: 40px;
+	/*background-color: red;*/
+	z-index: 9;
+	line-height: 40px;
+
+}
+.tushu_lunbozuoyou li.tushu_lunbo_zuo{
+	text-align: center;
+	width: 30px;
+	height: 100%;
+	background-color: #fff;
+	position: absolute;
+	left: 0;
+	opacity: 0;
+	background-color: #ccc;
+}
+.tushu_lunbozuoyou li.tushu_lunbo_you{
+	text-align: center;
+	width: 30px;
+	height: 100%;
+	background-color: #fff;
+	position: absolute;
+	right: 0;
+	opacity: 0;
+	background-color: #ccc;
+}
+.neirong1:hover li.tushu_lunbo_zuo,.neirong1:hover li.tushu_lunbo_you{
+	opacity: 0.5;
+}
+li.tushu_lunbo_zuo:hover,li.tushu_lunbo_you:hover{
+	opacity: 0.8!important;
+}
+.neirong_lunbodian li.active{
+	background-color: skyblue;
+}
+
+
+
+.banner_content{
+	width: 800px;
+	height: 460px;
+	background-color: #000;
+	position: absolute;
+	left: 234px;
+	top: 0px;
+	display: none;
+	font-size: 100px;
+	z-index: 999;
+}
+.adg{
+	width: 100%;
+	height: 0px;
+	background-color: #ccc;
+	position: relative;
+	top: 0;
+	z-index: 10;
+	transition: 1s ;
+	z-index: 11	;
+	/*opacity: 0;*/
+	overflow: hidden;
+}
+.daohang_wenzi span:hover{
+	color: #ff6700;
+}
+.daohang_dada{
+	width: 100%;
+	height: 100px;
+}
+.daohang_wenziyincang{
+	/*margin: 0 auto;*/
+	/*background-color: blue;*/
+	width: 1226px;
+	height: 200px;
+	position: absolute;
+	/*top: 100px;*/
+	/*left: -234px;*/
+	z-index: 20;
+	/*opacity: 0;*/
+	left: 0;
+	right: 0;
+	margin: auto;
+	transition: top 1s;
+	display: none;
+	color: red;
+
+}
+.daohang_active{
+	z-index: 999;
+}
+
+
+
+
+
+
+

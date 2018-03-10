@@ -152,3 +152,131 @@
      con(listop[0]);
      con(listop[1]);
  }
+
+
+
+ {
+    function con(cn) {
+        let left=cn.querySelector(".tushu_lunbo_zuo");
+        let right=cn.querySelector(".tushu_lunbo_you");
+        let img=cn.querySelector(".tushu_lunbo");
+        let dians=cn.querySelectorAll(".neirong_lunbodian li");
+        let n=0;
+        right.onclick=function () {
+            n++;
+            if(n==dians.length){
+                n=dians.length-1;
+                return;
+            }
+            img.style.marginLeft=-n*296+"px";
+            dians[n].classList.add("active");
+            dians[n-1].classList.remove("active");
+            obj=dians[n];
+        }
+        left.onclick=function () {
+            n--;
+            if(n===-1){
+                n=0;
+                return;
+            }
+            img.style.marginLeft=-n*296+"px";
+            dians[n].classList.add("active");
+            dians[n+1].classList.remove("active");
+            // console.log(n);
+            obj=dians[n];
+        }
+        let obj=dians[0];
+        dians.forEach(function (val,index) {
+            val.onclick=function () {
+                obj.classList.remove("active");
+                dians[index].classList.add("active");
+
+                obj=dians[index];
+                img.style.marginLeft=-index*296+"px";
+                n=index;
+
+                // for(var h=0;h<dians.length;h++){
+                //     dians[h].classList.remove("active");
+                //     img.style.marginLeft=-index*296+"px";
+                //     n=index;
+                // }
+                // dians[index].classList.add("active");
+            }
+
+        })
+    }
+    let cvb=document.querySelectorAll(".neirong1");
+    con(cvb[0]);
+    con(cvb[1]);
+    con(cvb[2]);
+    con(cvb[3]);
+
+ }
+
+
+ {
+
+     let ce=document.querySelectorAll(".banner_cedaohang li");
+     let imgs=document.querySelectorAll(".banner_content");
+     ce.forEach(function (val,index) {
+         val.onmouseenter=function () {
+             imgs[index].style.display="block";
+
+         }
+         val.onmouseleave=function () {
+             imgs[index].style.display="none";
+         }
+     })
+ }
+
+
+ {
+     let imgs=document.querySelector(".daohang_wenzi");
+     let zis=document.querySelectorAll(".daohang_wenzi li");
+     let adg=document.querySelector(".adg");
+     let qwe=document.querySelectorAll(".daohang_wenziyincang");
+     imgs.onmouseenter=function () {
+         adg.style.height="200px";
+
+     }
+     // imgs.onmouseleave=function () {
+     //     adg.style.height="0";
+     //
+     // }
+     adg.onmouseleave=function () {
+     adg.style.height="0";
+
+     }
+     zis.forEach(function (val,index) {
+         val.onmouseenter=function () {
+             // qwe[index].style.height="200px";
+
+            for(var i=0;i<qwe.length;i++){
+                qwe[i].classList.remove("daohang_active");
+            }
+            qwe[index].classList.add("daohang_active");
+             qwe[index].style.display="block";
+             // qwe[index].style.opacity=1;
+             qwe[index].style.height="200px";
+         }
+         val.onmouseleave=function () {
+             // qwe[index].style.height="0";
+             for(var i=0;i<qwe.length;i++){
+                 qwe[i].classList.remove("daohang_active");
+             }
+             qwe[index].classList.add("daohang_active");
+             // qwe[index].style.display="none";
+             // qwe[index].style.opacity=0;
+             // qwe[index].style.height="0px";
+         }
+     })
+
+
+
+
+
+
+
+
+
+ }
