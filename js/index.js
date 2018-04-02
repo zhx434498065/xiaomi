@@ -1,282 +1,234 @@
- {
-        let imgs=document.querySelectorAll(".imgbox li");
-        let pagers=document.querySelectorAll(".pagerbox li");
-        var banner=document.querySelector("#banner");
-        var zuo=document.querySelector
-        (".banner_anniu1");
-        var you=document.querySelector(".banner_anniu2");
-        pagers.forEach(function (ele,index) {
-            ele.onclick=function () {
-                for(let i=0;i<imgs.length;i++){
-                    imgs[i].classList.remove("active");
-                    pagers[i].classList.remove("active");
-                }
-                // this.classList.add("active");
-                pagers[index].classList.add("active");
-                imgs[index].classList.add("active");
-                n=index;
-            }
-        })
-        var n=0;
-        function move() {
+//nav
+{
+    const nav=document.querySelector(".nav");
+    const nav_box=document.querySelector(".nav_wzbox");
+    const nav_bottom=document.querySelector(".nav_bottom");
 
-                n++;
-                if(n===imgs.length){
-                    n=0;
-                }
-                if(n<0){
-                    n=imgs.length-1;
-                }
-                for(let i=0;i<imgs.length;i++){
-                    imgs[i].classList.remove("active");
-                    pagers[i].classList.remove("active");
-                }
-                // this.classList.add("active");
-                pagers[n].classList.add("active");
-                imgs[n].classList.add("active");
-            }
+    nav_box.onmouseenter=function () {
+        nav_bottom.style.height="235px";
+        nav_bottom.style.borderTop="1px solid #e0e0e0";
+    };
+    nav_box.onmouseleave=function () {
+        nav_bottom.style.height="0";
+        nav_bottom.style.borderTop="";
+    };
+    nav_bottom.onmouseenter=function () {
+        nav_bottom.style.height="235px";
+        nav_bottom.style.borderTop="1px solid #e0e0e0";
+    };
+    nav_bottom.onmouseleave=function () {
+        nav_bottom.style.height="0";
+        nav_bottom.style.borderTop="";
+    };
 
-        let h=setInterval(move,3000);//自动执行
-        banner.onmouseenter=function () {
-            clearInterval(h)  ; //清除
-        }
-        banner.onmouseleave=function () {
-            h=setInterval(move,3000);//鼠标离开效果添加
-        }
-        let flag=true;
-        you.onclick=function(){
-            if(flag){
-                flag=false;
-        	    move();
+    const spans=document.querySelectorAll(".span1");
+    const things=document.querySelectorAll(".thing1");
+    spans.forEach(function (ele,index) {
+        ele.onmouseenter=function () {
+            for(let i=0;i<spans.length;i++){
+                // spans[i].classList.remove("active4");
+                things[i].classList.remove("active4");
+                // spans[i].classList.remove("active4");
+                // spans[index].classList.remove("active4");
             }
+            // this.classList.add("active4");
+            things[index].classList.add("active4");
         };
-        zuo.onclick=function () {
-            if(flag){
-                flag=false;
-                n-=2;
-                move();
-            }
+        ele.onmouseleave=function () {
+            spans[index].classList.remove("active4");
         }
-        imgs.forEach(function (val,index) {
-            val.addEventListener("transitionend",function () {
-                flag=true;
-            })
-        });
+    })
+
+}
+//banner
+{
+    let imgs=document.querySelectorAll(".imgbox li");
+    let pagers=document.querySelectorAll(".pagerbox li");
+    let banner=document.querySelector("#banner");
+    let banner_lbtn=document.querySelector(".banner_lbtn");
+    let banner_rbtn=document.querySelector(".banner_rbtn");
+    // console.log(banner_rbtn)
+    // console.log(banner)
+    pagers.forEach(function (ele,index) {
+        ele.onclick=function () {
+            for(let i=0;i<imgs.length;i++){
+                imgs[i].classList.remove("active");
+                pagers[i].classList.remove("active");
+            }
+            //this ele pagers[index]指的都是一个
+            this.classList.add("active");
+            imgs[index].classList.add("active");
+            n=index;
+        }
+    });
+    //setInterval()每隔一段时间重复执行  3000（3秒）指的是时间，单位是毫秒
+    //轮播中的自动播放
+    let n=0;
+    let t=setInterval(move,2000);
+    function move() {
+        n++;
+        // n=n%5;
+        if(n===imgs.length){
+            n=0;
+        }
+        if(n<0){
+            n=imgs.length-1;
+        }
+        for(let i=0;i<imgs.length;i++){
+            imgs[i].classList.remove("active");
+            pagers[i].classList.remove("active");
+        }
+        imgs[n].classList.add("active");
+        pagers[n].classList.add("active");
     }
+    banner.onmouseenter=function () {
+        clearInterval(t)
+    };
+    banner.onmouseleave=function () {
+        t=setInterval(move,2000);
+    };
+    let flag=true;
+    banner_rbtn.onclick=function () {
+        if(flag){
+            flag=false;
+            move();
+        }
+    }
+    banner_lbtn.onclick=function () {
+        if(flag){
+            flag=false;
+            n-=2;
+            move();
+        }
+    };
+    imgs.forEach(function (ele) {
+        ele.addEventListener("transitionend",function () {
+            flag=true;
+        })
+    })
+}
+//banner list
+{
+    let navlis=document.querySelectorAll(".banner_navli");
+    let menus=document.querySelectorAll(".banner_yin");
+    // let banner_yuls=document.querySelectorAll(".banner_yul");
+    let obj=menus[0];
+    navlis.forEach(function (ele,index) {
+        ele.onmouseenter=function () {
+            obj.style.display="none";
+            menus[index].style.display="block";
+            obj=menus[index];
+        };
+        ele.onmouseleave=function () {
+            menus[index].style.display="none";
+        }
+    });
 
- {
-     const next=document.querySelector(".tuijian_anniu_you");
-     const prev=document.querySelector(".tuijian_anniu_zuo");
-     const img=document.querySelector(".dapei_dada");
-     console.dir(next);
-     let n=0;
-     next.onclick=function () {
-         prev.classList.add("display");
-         n++;
-
-         if(n==2){
-             this.classList.remove("display");
-         }
-         if(n==3){
-             n=2;
-             return;
-         }
-         img.style.marginLeft=-992*n+"px";
-     }
-     prev.onclick=function () {
-         next.classList.add("display");
-         n--;
-         if(n==0){
-             prev.classList.remove("display");
-         }
-         if(n==-1){
-
-             n=0;
-             return;
-         }
-         img.style.marginLeft=-992*n+"px";
-     }
- }
-
-
- {
-     const next=document.querySelector(".mingxing_anniu_you");
-     const prev=document.querySelector(".mingxing_anniu_zuo");
-     const img=document.querySelector("#mingxing_lunbo1");
-     console.dir(next);
-     let n=0;
-     next.onclick=function () {
-         n++;
-         prev.classList.add("display");
-         if(n==1){
-             this.classList.remove("display");
-         }
-         if(n==2){
-             n=1;
-             return;
-         }
-         img.style.marginLeft=-992*n+"px";
-     }
-     prev.onclick=function () {
-         next.classList.add("display");
-         n--;
-         if(n==0){
-             this.classList.remove("display");
-         }
-         if(n==-1){
-             n=0;
-             return;
-         }
-         img.style.marginLeft=-992*n+"px";
-     }
- }
-
-
- {
-     function con(c) {
-         let types=c.querySelectorAll(".dapei_qwe h2");
-         let lists=c.querySelectorAll(".dapei_lunbo");
-         console.dir(types);
-         types.forEach(function (val,index) {
-             val.onclick=function () {
-                 for(var i=0;i<types.length;i++){
-                     types[i].classList.remove("active");
-                     lists[i].classList.remove("dapei_active");
-                 }
-                 types[index].classList.add("active");
-                 lists[index].classList.add("dapei_active");
-             }
-         })
-     }
-     let listop=document.querySelectorAll(".dapei123");
-     con(listop[0]);
-     con(listop[1]);
- }
-
-
-
- {
-    function con(cn) {
-        let left=cn.querySelector(".tushu_lunbo_zuo");
-        let right=cn.querySelector(".tushu_lunbo_you");
-        let img=cn.querySelector(".tushu_lunbo");
-        let dians=cn.querySelectorAll(".neirong_lunbodian li");
+}
+//单品
+{   function good1(parent) {
+        const prev=parent.querySelector(".danpin_btn1");
+        const next=parent.querySelector(".danpin_btn2");
+        const inner=parent.querySelector(".bottom1");
         let n=0;
-        right.onclick=function () {
+        next.onclick=function () {
             n++;
-            if(n==dians.length){
-                n=dians.length-1;
+            prev.classList.remove("disable1");
+            if(n==2){
+                this.classList.add("disable1");
+            }
+            if(n==3){
+                n=2;
                 return;
             }
-            img.style.marginLeft=-n*296+"px";
-            dians[n].classList.add("active");
-            dians[n-1].classList.remove("active");
-            obj=dians[n];
-        }
-        left.onclick=function () {
+            inner.style.marginLeft=-1226*n+"px";
+        };
+        prev.onclick=function () {
             n--;
+            next.classList.remove("disable1");
+            if(n===0){
+                this.classList.add("disable1");
+            }
+            // if(n==1){
+            //     next.classList.remove("disable");
+            // }
             if(n===-1){
                 n=0;
                 return;
             }
-            img.style.marginLeft=-n*296+"px";
-            dians[n].classList.add("active");
-            dians[n+1].classList.remove("active");
-            // console.log(n);
-            obj=dians[n];
+            inner.style.marginLeft=-1226*n+"px";
         }
-        let obj=dians[0];
-        dians.forEach(function (val,index) {
-            val.onclick=function () {
-                obj.classList.remove("active");
-                dians[index].classList.add("active");
-
-                obj=dians[index];
-                img.style.marginLeft=-index*296+"px";
-                n=index;
-
-                // for(var h=0;h<dians.length;h++){
-                //     dians[h].classList.remove("active");
-                //     img.style.marginLeft=-index*296+"px";
-                //     n=index;
-                // }
-                // dians[index].classList.add("active");
+    }
+    const good1s=document.querySelectorAll(".good1");
+    good1s.forEach(function (ele) {
+        good1(ele);
+    })
+}
+//搭配
+{   function dapei(parent) {
+        const types=parent.querySelectorAll(".type");
+        const goods=parent.querySelectorAll(".part2");
+        types.forEach(function (ele,index) {
+            ele.onmouseenter=function () {
+                for(let i=0;i<goods.length;i++){
+                    types[i].classList.remove("active2");
+                    goods[i].classList.remove("active2");
+                }
+                this.classList.add("active2");
+                goods[index].classList.add("active2");
             }
-
         })
     }
-    let cvb=document.querySelectorAll(".neirong1");
-    con(cvb[0]);
-    con(cvb[1]);
-    con(cvb[2]);
-    con(cvb[3]);
+    const dapeis=document.querySelectorAll(".dapei");
+    dapeis.forEach(function (ele) {
+        dapei(ele);
+    })
+}
+//推荐
+{   function neirong_item(parent) {
+        let boxs=parent.querySelector(".tw_box");
+        let books=parent.querySelectorAll(".tuwen");
+        let dians=parent.querySelectorAll(".lbd1");
+        let btnl=parent.querySelector(".nr_lbtn");
+        let btnr=parent.querySelector(".nr_rbtn");
 
- }
-
-
- {
-
-     let ce=document.querySelectorAll(".banner_cedaohang li");
-     let imgs=document.querySelectorAll(".banner_content");
-     ce.forEach(function (val,index) {
-         val.onmouseenter=function () {
-             imgs[index].style.display="block";
-
-         }
-         val.onmouseleave=function () {
-             imgs[index].style.display="none";
-         }
-     })
- }
-
-
- {
-     let imgs=document.querySelector(".daohang_wenzi");
-     let zis=document.querySelectorAll(".daohang_wenzi li");
-     let adg=document.querySelector(".adg");
-     let qwe=document.querySelectorAll(".daohang_wenziyincang");
-     imgs.onmouseenter=function () {
-         adg.style.height="200px";
-
-     }
-     // imgs.onmouseleave=function () {
-     //     adg.style.height="0";
-     //
-     // }
-     adg.onmouseleave=function () {
-     adg.style.height="0";
-
-     }
-     zis.forEach(function (val,index) {
-         val.onmouseenter=function () {
-             // qwe[index].style.height="200px";
-
-            for(var i=0;i<qwe.length;i++){
-                qwe[i].classList.remove("daohang_active");
+        dians.forEach(function (ele,index) {
+            ele.onclick=function () {
+                for(let i=0;i<books.length;i++){
+                    dians[i].classList.remove("active3");
+                }
+                this.classList.add("active3");
+                boxs.style.left=-296*index+"px";
+                n=index;
             }
-            qwe[index].classList.add("daohang_active");
-             qwe[index].style.display="block";
-             // qwe[index].style.opacity=1;
-             qwe[index].style.height="200px";
-         }
-         val.onmouseleave=function () {
-             // qwe[index].style.height="0";
-             for(var i=0;i<qwe.length;i++){
-                 qwe[i].classList.remove("daohang_active");
-             }
-             qwe[index].classList.add("daohang_active");
-             // qwe[index].style.display="none";
-             // qwe[index].style.opacity=0;
-             // qwe[index].style.height="0px";
-         }
-     })
-
-
-
-
-
-
-
-
-
- }
+        });
+        let n=0;
+        let l=books.length;
+        let obj=dians[0];
+        btnr.onclick=function () {
+            n++;
+            if(n===l){
+                n=l-1;
+                return;
+            }
+            boxs.style.left=n*-296+"px";
+            dians[n].classList.add("active3");
+            dians[n-1].classList.remove("active3");
+            obj=dians[n];
+        };
+        btnl.onclick=function () {
+            n--;
+            if(n<0){
+                n=0;
+                return;
+            }
+            boxs.style.left=n*-296+"px";
+            dians[n].classList.add("active3");
+            dians[n+1].classList.remove("active3");
+        }
+}
+    let contents=document.querySelectorAll(".neirong_item");
+    contents.forEach(function (ele) {
+        neirong_item(ele);
+    })
+}
